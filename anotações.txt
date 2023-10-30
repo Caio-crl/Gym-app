@@ -1,3 +1,0 @@
-onPress={() => userContainer.createUser(name, email, password)}
-
-como coloco o useNavigation com as rotas na nova função(ver se funciona dessa forma)

@@ -29,7 +29,7 @@ export const Banner: React.FC<BannerProps> = ({
 					style={{
 						width: '70%',
 						marginLeft: 335,
-						paddingTop: 11,
+						paddingTop: 12,
 					}}
 				>
 					{rightIcon}

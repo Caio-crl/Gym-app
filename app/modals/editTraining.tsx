@@ -1,8 +1,9 @@
 import CustomButton from '@/components/CustomButton';
 import CustomModal from '@/components/CustomModal';
+import { GlobalContext } from '@/context/GlobalContext';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
 	View,
 	StyleSheet,
@@ -12,6 +13,7 @@ import {
 	TextInput,
 	TouchableOpacity,
 } from 'react-native';
+const {} = useContext(GlobalContext);
 
 interface editTrainingProps {}
 
@@ -47,10 +49,17 @@ export const editTraining: React.FC<editTrainingProps> = ({}) => {
 		console.log(index);
 	};
 	const save = () => {
+		setTraining(training);
 		navigation.navigate('exercises', {});
 	};
+
 	return (
-		<CustomModal open={true} close={closed} placeholder='Title'>
+		<CustomModal
+			open={true}
+			close={closed}
+			placeholder='Title'
+			// title={bannerTitle}
+		>
 			<ScrollView>
 				<View
 					style={{

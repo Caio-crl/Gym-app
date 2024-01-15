@@ -1,8 +1,9 @@
 import Banner from '@/components/Banner';
 import Container from '@/components/Container';
+import { GlobalContext } from '@/context/GlobalContext';
 import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
 	View,
 	StyleSheet,
@@ -37,6 +38,7 @@ export const Home = () => {
 	const editBanner = (parent: string, screen: string) => {
 		navigation.navigate(parent, { screen: screen });
 	};
+
 	return (
 		<Container
 			title='Exercises'
@@ -48,7 +50,7 @@ export const Home = () => {
 			<ScrollView style={{ height: 500 }}>
 				{training.map((training, index) => (
 					<Banner
-						bannerTitle={`Training : ...`}
+						// bannerTitle={''}
 						bannerSubtitle='It has (X) exercises'
 						edit='Edit'
 						onChange={(value: string) =>

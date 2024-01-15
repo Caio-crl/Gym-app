@@ -8,20 +8,18 @@ import {
 } from '@/validations/valdiations';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import Link from '@react-navigation/native';
-import { UserContainer } from '@/containers/userContainer';
+import { useContext, useState } from 'react';
+import { StyleSheet, Text } from 'react-native';
+
+import { GlobalContext } from '../../context/GlobalContext';
 
 export const Register = () => {
-	const [email, setEmail] = useState('');
 	const [emailValidation, setEmailValidation] = useState(true);
-	const [password, setPassword] = useState('');
 	const [passwordValidation, setPasswordValidation] = useState(true);
-	const [name, setName] = useState('');
 	const [nameValidation, setNameValidation] = useState(true);
 
-	const userContainer = UserContainer.useContainer();
+	const { name, email, password, setName, setEmail, setPassword } =
+		useContext(GlobalContext);
 
 	const navigation = useNavigation();
 
@@ -69,6 +67,11 @@ export const Register = () => {
 	};
 
 	// console.log(users);
+	const register = () => {
+		if (emailValidation && passwordValidation) {
+			navigation.navigate('home', {});
+		}
+	};
 
 	return (
 		<Container
@@ -114,10 +117,7 @@ export const Register = () => {
 				(Minimum eight characters, at least one letter, one number and
 				one special character)
 			</Text>
-			<CustomButton
-				title='Create Now'
-				onPress={() => userContainer.createUser(name, email, password)}
-			/>
+			<CustomButton title='Create Now' onPress={register} />
 		</Container>
 	);
 };

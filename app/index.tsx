@@ -7,29 +7,37 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 import { CustomTextInput } from '@/components/CustomTextInput';
-import { regexPassword } from '@/validations/valdiations';
+import { regexEmail, regexPassword } from '@/validations/valdiations';
 import CustomButton from '@/components/CustomButton';
 import { useNavigation } from 'expo-router';
-import { UserContainer } from '@/containers/userContainer';
 import { Ionicons } from '@expo/vector-icons';
 
 export const FirstPage = () => {
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
-	// const [emailValidation, setEmailValidation] = useState(true);
 	const navigation = useNavigation();
-	const userContainer = UserContainer.useContainer();
+	const [emailValidation, setEmailValidation] = useState(true);
+	const [passwordValidation, setPasswordValidation] = useState(true);
+
 	const onChangeEmail = (value) => {
 		setEmail(value);
-		userContainer.setLoginVerified(false);
-
-		// const emailValid = regexEmail.test(value);
-		// console.log(emailValid);
+		const emailValid = regexEmail.test(value);
+		if (emailValid) {
+			setEmailValidation(true);
+		} else {
+			setEmailValidation(false);
+		}
+		console.log(emailValid);
 	};
 	const onChangePassword = (value) => {
 		setPassword(value);
 		const passwordValid = regexPassword.test(value);
 		console.log(passwordValid);
+	};
+	const login = () => {
+		if (emailValidation && passwordValidation) {
+			navigation.navigate('home', {});
+		}
 	};
 	const createNow = () => {
 		navigation.navigate('register', {});
@@ -45,42 +53,20 @@ export const FirstPage = () => {
 				placeholder='Email'
 				onChange={(value) => onChangeEmail(value)}
 			/>
-			{!userContainer.loginVerified && (
-				<View
-					style={{
-						display: 'flex',
-						flexDirection: 'row',
-						alignItems: 'center',
-						justifyContent: 'center',
-						gap: 5,
-					}}
-				>
-					<Ionicons
-						name='alert-circle'
-						size={24}
-						color='#FF2B2B'
-						style={{ paddingBottom: 40 }}
-					/>
-					<Text style={styles.emailnotexist}>
-						This email is not registered !
-					</Text>
-				</View>
-			)}
 			<CustomTextInput
 				value={password}
+				validation={passwordValidation}
 				password={true}
 				placeholder='Password'
 				onChange={(value) => onChangePassword(value)}
+				error={passwordValidation ? '' : 'The password is incorrect'}
 			/>
 			<Text style={styles.dontAccount}>Don't have an account?</Text>
 			<Pressable style={styles.createOutline} onPress={createNow}>
 				<Text style={styles.createAccount}>Create now !</Text>
 			</Pressable>
 
-			<CustomButton
-				title='Login'
-				onPress={() => userContainer.login(email, password)}
-			/>
+			<CustomButton title='Login' onPress={login} />
 		</View>
 	);
 };

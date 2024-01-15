@@ -1,16 +1,9 @@
 import CustomModal from '@/components/CustomModal';
+import { GlobalContext } from '@/context/GlobalContext';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
-import { useState } from 'react';
-import {
-	View,
-	StyleSheet,
-	ScrollView,
-	Text,
-	Pressable,
-	TextInput,
-	TouchableOpacity,
-} from 'react-native';
+import { useContext, useState } from 'react';
+import { View, StyleSheet, Text, TextInput } from 'react-native';
 
 export const Training = () => {
 	const [exercise, setExercise] = useState('');
@@ -43,9 +36,14 @@ export const Training = () => {
 		setTraining(trainingRemoved);
 		console.log(index);
 	};
+	// const { bannerTitle } = useContext(GlobalContext);
 
 	return (
-		<CustomModal open={true} title='Training' close={closed}>
+		<CustomModal
+			open={true}
+			close={closed}
+			// title={bannerTitle}
+		>
 			<View
 				style={{
 					display: 'flex',

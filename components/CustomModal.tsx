@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { TextInput } from 'react-native-gesture-handler';
+import { GlobalContext } from '@/context/GlobalContext';
 
 interface CustomModalProps {
 	title?: string;
@@ -14,7 +15,6 @@ interface CustomModalProps {
 	close?: () => void;
 	children?: React.ReactNode;
 	customStyles?: any;
-
 	placeholder?: string;
 }
 
@@ -24,7 +24,6 @@ export const CustomModal: React.FC<CustomModalProps> = ({
 	close,
 	children,
 	customStyles = {},
-
 	placeholder,
 }) => {
 	return (

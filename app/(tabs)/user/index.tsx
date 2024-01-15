@@ -1,6 +1,8 @@
 import Container from '@/components/Container';
+import { GlobalContext } from '@/context/GlobalContext';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
+import { useContext } from 'react';
 import { View, StyleSheet, Text, Pressable } from 'react-native';
 
 export const User = () => {
@@ -8,6 +10,7 @@ export const User = () => {
 	const logout = (parent: string, screen: string) => {
 		navigation.navigate(parent, { screen: screen });
 	};
+	const { name, email } = useContext(GlobalContext);
 	return (
 		<Container
 			title='User'
@@ -17,13 +20,13 @@ export const User = () => {
 			}
 		>
 			<View style={styles.topiContainer}>
-				<Text style={styles.topiTitle}>Name :</Text>
+				<Text style={styles.topiTitle}>Name : {name}</Text>
 			</View>
 			<View style={styles.topiContainer}>
-				<Text style={styles.topiTitle}>Email :</Text>
+				<Text style={styles.topiTitle}>Email : {email}</Text>
 			</View>
 			<View style={styles.topiContainer}>
-				<Text style={styles.topiTitle}>Password :</Text>
+				<Text style={styles.topiTitle}>Password : **********</Text>
 			</View>
 			<Pressable
 				onPress={() => {

@@ -1,4 +1,3 @@
-import { UserContainer } from '@/containers/userContainer';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import {
 	DarkTheme,
@@ -9,6 +8,7 @@ import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
+import { InfosProvider } from '@/context/GlobalContext';
 
 export {
 	// Catch any errors thrown by the Layout component.
@@ -51,7 +51,7 @@ function RootLayoutNav() {
 	const colorScheme = useColorScheme();
 
 	return (
-		<UserContainer.Provider>
+		<InfosProvider>
 			<ThemeProvider
 				value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}
 			>
@@ -74,6 +74,6 @@ function RootLayoutNav() {
 					/>
 				</Stack>
 			</ThemeProvider>
-		</UserContainer.Provider>
+		</InfosProvider>
 	);
 }

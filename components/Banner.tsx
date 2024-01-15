@@ -1,10 +1,12 @@
+import { GlobalContext } from '@/context/GlobalContext';
 import { Ionicons } from '@expo/vector-icons';
-import React from 'react';
+import React, { useContext } from 'react';
 import { TextInput, StyleSheet, View, Text, Pressable } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+// const { bannerTitle } = useContext(GlobalContext);
 
 interface BannerProps {
-	bannerTitle: string;
+	// bannerTitle: string;
 	bannerSubtitle: string;
 	onChangeText: () => void;
 	rightIcon: React.ReactNode;
@@ -14,7 +16,7 @@ interface BannerProps {
 }
 
 export const Banner: React.FC<BannerProps> = ({
-	bannerTitle,
+	// bannerTitle,
 	bannerSubtitle,
 	onChangeText,
 	rightIcon,

@@ -38,7 +38,7 @@ export const Banner: React.FC<BannerProps> = ({
 				</View>
 			)}
 			<View>
-				<Text style={styles.bannerTitle}>{bannerTitle}</Text>
+				<Text style={styles.bannerTitle}>Exercise x</Text>
 				<TouchableOpacity onPress={open}>
 					<Ionicons
 						name='chevron-forward-outline'

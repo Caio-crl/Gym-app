@@ -10,7 +10,7 @@ export const User = () => {
 	const logout = (parent: string, screen: string) => {
 		navigation.navigate(parent, { screen: screen });
 	};
-	const { name, email } = useContext(GlobalContext);
+	const { name, email, password } = useContext(GlobalContext);
 	return (
 		<Container
 			title='User'
